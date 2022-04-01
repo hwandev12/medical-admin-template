@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import models
 from django.shortcuts import get_object_or_404
+from .forms import Users_form
 
 
 def feedback_users(request):
@@ -17,4 +18,8 @@ def select_info(request, pk):
     return render(request, 'details/feedback_details.html', context)
 
 def create_user(request):
-    return render(request, 'base.html')
+    print(request.POST)
+    context = {
+        "forms": Users_form()        
+    }
+    return render(request, 'create.html', context)
