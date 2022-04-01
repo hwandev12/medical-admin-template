@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Users info</title>
   </head>
+  <style>
+    li {
+      list-style: none;
+      padding: 10px 10px;
+      background-color: rgba(41, 40, 40, 0.3);
+      font-family: sans-serif;
+      margin-top: 10px;
+    }
+  </style>
   <body>
-    <h1>Feedback users</h1>
+    <h2>Users info</h2>
+    <ul>
+      <li>{{ feedback.name }}</li>
+      <li>{{ feedback.last_name }}</li>
+      <li>{{ feedback.country }}</li>
+    </ul>
   </body>
 </html>

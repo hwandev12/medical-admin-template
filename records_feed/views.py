@@ -11,4 +11,7 @@ def feedback_users(request):
 
 def select_info(request, pk):
     feedback = get_object_or_404(models.Setter, id=pk)
-    return render(request, 'details/feedback_details.html')
+    context = {
+        "feedback": feedback
+    }
+    return render(request, 'details/feedback_details.html', context)
