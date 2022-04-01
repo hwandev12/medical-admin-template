@@ -3,5 +3,6 @@ from .views import *
 
 urlpatterns = [
     path('', feedback_users, name='customers'),
-    path('<pk>/', select_info)
+    path('<int:pk>/', select_info),
+    path('create/', create_user)
 ]

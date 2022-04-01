@@ -15,3 +15,6 @@ def select_info(request, pk):
         "feedback": feedback
     }
     return render(request, 'details/feedback_details.html', context)
+
+def create_user(request):
+    return render(request, 'base.html')
