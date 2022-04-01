@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers page</title>
+  </head>
+  <style>
+    .feedback a {
+      width: 100%;
+      background-color: rgba(59, 56, 56, 0.5);
+      padding: 20px 20px;
+      text-decoration: none;
+      font-size: 21px;
+      display: block;
+      margin-top: 5px;
+      font-family: sans-serif;
+      color: #444;
+    }
+  </style>
+  <body>
+    <div class="feedback">
+      <h2 style="font-family: sans-serif">National feedback users</h2>
+      {% for setter in setters %}
+      <a href="/customers/{{ setter.pk }}/"
+        >{{ setter.name }} {{ setter.last_name }} {{ setter.country }}</a
+      >
+      {% endfor %}
+    </div>
+  </body>
+</html>
