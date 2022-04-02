@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Users info</title>
-  </head>
+{% extends 'base.html' %}
+{% block content %}
   <style>
     li {
       list-style: none;
@@ -15,12 +9,10 @@
       margin-top: 10px;
     }
   </style>
-  <body>
     <h2>Users info</h2>
     <ul>
       <li>{{ feedback.name }}</li>
       <li>{{ feedback.last_name }}</li>
       <li>{{ feedback.country }}</li>
     </ul>
-  </body>
-</html>
+{% endblock content %}

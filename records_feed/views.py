@@ -4,6 +4,9 @@ from django.shortcuts import get_object_or_404
 from .forms import Users_form
 
 
+def home(request):
+    return render(request, 'base.html')
+
 def feedback_users(request):
     setters = models.Setter.objects.all()
     context = {"setters": setters}
