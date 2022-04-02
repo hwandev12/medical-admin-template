@@ -1,5 +1,6 @@
 from email import message
 from django import forms
+from django_countries.fields import CountryField
 
 
 class Users_form(forms.Form):
@@ -8,7 +9,8 @@ class Users_form(forms.Form):
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
     contact_number = forms.CharField(max_length=30)
-    
+    country = CountryField().formfield()
+        
     def __init__(self, *args, **kwargs):
         super(Users_form, self).__init__(*args, **kwargs)
         self.fields["name"].widget.attrs={
@@ -32,6 +34,11 @@ class Users_form(forms.Form):
                 "name": "Text"
             }
         self.fields["contact_number"].widget.attrs={
+                "id": "Text",
+                "class": "input-text js-input",
+                "name": "Text",
+            }
+        self.fields["country"].widget.attrs={
                 "id": "Text",
                 "class": "input-text js-input",
                 "name": "Text",

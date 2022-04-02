@@ -1,13 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <link
   href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
   rel="stylesheet"
   id="bootstrap-css"
 />
-<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -29,8 +27,23 @@
       <label class="label" for="company">Last Name</label>
     </div>
     <div class="form-field col-lg-6">
-      {{ forms.contact_number }}
-      <label class="label" for="phone">Contact Number</label>
+      {% load countries %}
+      {% get_countries as countries %}
+      <select
+        style="background-color: white; color: #666; padding-bottom: 4px;"
+        id="form_need"
+        name="need"
+        class="input-text js-input"
+        required="required"
+        data-error="Please specify your need."
+      >
+      <option value="" selected>
+        Select Your Country
+      </option>
+        {% for country in countries %}
+        <option>{{ country.name }}</option>
+        {% endfor %}
+      </select>
     </div>
     <div class="form-field col-lg-12">
       {{ forms.message }}
