@@ -12,43 +12,32 @@
 
 <section class="get-in-touch">
   <h1 class="title">Get in touch</h1>
-  <form class="contact-form row">
+  <form method="post" class="contact-form row">
     {% csrf_token %}
     <div class="form-field col-lg-6">
-      {{ forms.name }}
+      {{ form.name }}
       <label class="label" for="name">Name</label>
     </div>
     <div class="form-field col-lg-6">
-      {{ forms.email }}
-      <label class="label" for="email">E-mail</label>
+      {{ form.last_name }}
+      <label class="label" for="email">Last Name</label>
     </div>
     <div class="form-field col-lg-6">
-      {{ forms.last_name }}
-      <label class="label" for="company">Last Name</label>
+      {{ form.email }}
+      <label class="label" for="company">Email</label>
     </div>
     <div class="form-field col-lg-6">
-      {% load countries %}
-      {% get_countries as countries %}
-      <select
-        style="background-color: white; color: #666; padding-bottom: 4px;"
-        id="form_need"
-        name="need"
-        class="input-text js-input"
-        required="required"
-        data-error="Please specify your need."
-      >
-      <option value="" selected>
-        Select Your Country
-      </option>
-        {% for country in countries %}
-        <option>{{ country.name }}</option>
-        {% endfor %}
-      </select>
+      {{ form.agent }}
+      <label class="label" for="company">Agent</label>
     </div>
     <div class="form-field col-lg-12">
-      {{ forms.message }}
+      {{ form.contact_number }}
+      <label class="label" for="message">Contact Number</label>
+    </div>   
+    <div class="form-field col-lg-12">
+      {{ form.message }}
       <label class="label" for="message">Message</label>
-    </div>
+    </div>    
     <div class="form-field col-lg-12">
       <input class="submit-btn" type="submit" value="Submit" />
     </div>

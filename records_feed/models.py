@@ -1,7 +1,5 @@
-from audioop import maxpp
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django_countries.fields import CountryField
 
 class User(AbstractUser):
     pass
@@ -16,7 +14,7 @@ class Setter(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     message = models.TextField(max_length=500)
-    country = CountryField()
+    contact_number = models.CharField(max_length=30)
     agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 
     def __str__(self):
