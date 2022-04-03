@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<link
+  href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="get-in-touch">
+  <h1 class="title">Update page for {{ form.name }} {{ form.last_name }}</h1>
+  <form method="post" class="contact-form row">
+    {% csrf_token %}
+    <div class="form-field col-lg-6">
+      {{ form.name }}
+      <label class="label" for="name">Name</label>
+    </div>
+    <div class="form-field col-lg-6">
+      {{ form.last_name }}
+      <label class="label" for="email">Last Name</label>
+    </div>  
+    <div class="form-field col-lg-12">
+      <input class="submit-btn" type="submit" value="Submit" />
+    </div>
+  </form>
+</section>
+{% endblock content %}

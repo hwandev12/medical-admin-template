@@ -1,4 +1,5 @@
 from email import message
+from multiprocessing import context
 from django.shortcuts import redirect, render
 from . import models
 from django.shortcuts import get_object_or_404
@@ -33,16 +34,18 @@ def create_user(request):
             message = form.cleaned_data['message']
             contact_number = form.cleaned_data['contact_number']
             agent = models.Agent.objects.first()
-            models.Setter.objects.create(
-                name=name,
-                last_name=last_name,
-                email=email,
-                message=message,
-                contact_number=contact_number,
-                agent=agent
-            )
+            models.Setter.objects.create(name=name,
+                                         last_name=last_name,
+                                         email=email,
+                                         message=message,
+                                         contact_number=contact_number,
+                                         agent=agent)
             return redirect('/')
-    context = {
-        "form": form 
-    }
+    context = {"form": form}
     return render(request, 'create.html', context)
+
+
+def update_user(request, pk):
+    form = Setter.objects.get(id=pk)
+    context = {"form": form}
+    return render(request, 'update.html', context)

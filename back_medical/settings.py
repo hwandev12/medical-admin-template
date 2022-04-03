@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'records_feed.apps.RecordsFeedConfig',
-    'django_countries',
 ]
 
 MIDDLEWARE = [
