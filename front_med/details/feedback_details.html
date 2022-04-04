@@ -11,6 +11,7 @@
   </style>
     <h2>Users info</h2>
       {{ feedback.name }}
-      {{ feedback.last_name }}
-      {{ feedback.country }}
+      {{ feedback.last_name }} <br>
+      <a href="/{{ feedback.pk }}/update/" class="btn btn-primary">update</a>
+      <a href="/{{ feedback.pk }}/delete/" class="btn btn-primary">delete</a>
 {% endblock content %}

@@ -13,7 +13,7 @@ class Setter(models.Model):
     name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    message = models.TextField(max_length=500)
+    message = models.CharField(max_length=500)
     contact_number = models.CharField(max_length=30)
     agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 

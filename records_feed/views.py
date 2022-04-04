@@ -3,7 +3,6 @@ from multiprocessing import context
 from django.shortcuts import redirect, render
 from . import models
 from django.shortcuts import get_object_or_404
-from django_countries.fields import CountryField
 from .forms import *
 
 
@@ -24,28 +23,28 @@ def select_info(request, pk):
 
 
 def create_user(request):
-    form = Users_form()
+    form = SetterModelForm()
     if request.method == "POST":
-        form = Users_form(request.POST)
+        form = SetterModelForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            contact_number = form.cleaned_data['contact_number']
-            agent = models.Agent.objects.first()
-            models.Setter.objects.create(name=name,
-                                         last_name=last_name,
-                                         email=email,
-                                         message=message,
-                                         contact_number=contact_number,
-                                         agent=agent)
+            form.save()
             return redirect('/')
     context = {"form": form}
     return render(request, 'create.html', context)
 
 
 def update_user(request, pk):
-    form = Setter.objects.get(id=pk)
-    context = {"form": form}
+    customer = models.Setter.objects.get(id=pk)
+    form = SetterModelForm(instance=customer)
+    if request.method == 'POST':
+        form = SetterModelForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+        return redirect('/')
+    context = {"form": form, "customer": customer}
     return render(request, 'update.html', context)
+
+def delete_user(request, pk):
+    customer =  get_object_or_404(Setter, id=pk)
+    customer.delete()
+    return redirect('/')
