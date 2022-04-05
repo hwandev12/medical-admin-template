@@ -1,11 +1,12 @@
 from django.urls import path
 from .views import *
 
+app_name = 'feedback'
+
 urlpatterns = [
-    path('', home, name='home'),
-    path('customers/', feedback_users, name='customers'),
-    path('<int:pk>/', select_info),
-    path('<int:pk>/update/', update_user),
-    path('<int:pk>/delete/', delete_user),
-    path('create/', create_user)
+    path('customers/', FeedbackUsers.as_view(), name='customers'),
+    path('<int:pk>/', SelectInfo.as_view(), name='user_info'),
+    path('<int:pk>/update/', UpdateUser.as_view(), name='update'),
+    path('<int:pk>/delete/', DeleteUser.as_view(), name='delete'),
+    path('create/', CreateUser.as_view(), name='register')
 ]

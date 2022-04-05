@@ -14,10 +14,9 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <section class="get-in-touch">
-  <h1 class="title">Get in touch</h1>
+  <h1 class="title">Are you sure to delete account?</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form | crispy }}
     <button type="submit" class="btn btn-primary w-100">Submit</button>
   </form>
 </section>

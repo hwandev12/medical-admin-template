@@ -1,17 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-  <style>
-    li {
-      list-style: none;
-      padding: 10px 10px;
-      background-color: rgba(41, 40, 40, 0.3);
-      font-family: sans-serif;
-      margin-top: 10px;
-    }
-  </style>
     <h2>Users info</h2>
       {{ feedback.name }}
       {{ feedback.last_name }} <br>
-      <a href="/{{ feedback.pk }}/update/" class="btn btn-primary">update</a>
-      <a href="/{{ feedback.pk }}/delete/" class="btn btn-primary">delete</a>
+      <a href="{% url 'feedback:update' feedback.pk %}" class="btn btn-primary">update</a>
+      <a href="{% url 'feedback:delete' feedback.pk %}" class="btn btn-primary">delete</a>
 {% endblock content %}
