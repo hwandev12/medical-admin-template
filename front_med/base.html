@@ -45,14 +45,22 @@
               <a href="{% url 'feedback:customers' %}"><span class="fa fa-user mr-3"></span> Customers</a>
             </li>
             <li>
-              <a href="{% url 'feedback:register' %}"><span class="fa fa-briefcase mr-3"></span>Sign up</a>
+              <a href="{% url 'feedback:create' %}"><span class="fa fa-briefcase mr-3"></span>Create</a>
             </li>
+            {% if request.user.is_authenticated %}
             <li>
-              <a href="#"><span class="fa fa-sticky-note mr-3"></span> Blog</a>
+              <a href="{% url 'logout' %}"><span class="fa fa-sticky-note mr-3"></span>Logout</a>
             </li>
+            {% else %}
             <li>
-              <a href="#"><span class="fa fa-suitcase mr-3"></span> Gallery</a>
+              <a href="{% url 'login' %}"><span class="fa fa-sticky-note mr-3"></span>Login</a>
             </li>
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+            <li>
+              <a href="/signup/"><span class="fa fa-suitcase mr-3"></span>Signup</a>
+            </li>
+            {% endif %}
             <li>
               <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
             </li>

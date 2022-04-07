@@ -1,5 +1,6 @@
 from email import message
 from multiprocessing import context
+from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, DeleteView, CreateView
@@ -40,6 +41,16 @@ class UpdateUser(UpdateView):
 class DeleteUser(DeleteView):
     template_name = 'delete.html'
     queryset = models.Setter.objects.all()
+    
+    def get_success_url(self):
+        return reverse('feedback:customers')
+
+class LoggedOut(TemplateView):
+    template_name = 'registration/logged_out.html'
+    
+class RegisterView(CreateUser):
+    template_name = 'registration/signup.html'
+    form_class = RegisterForm
     
     def get_success_url(self):
         return reverse('feedback:customers')
