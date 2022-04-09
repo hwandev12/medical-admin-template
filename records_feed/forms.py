@@ -6,7 +6,9 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 User = get_user_model()
 
+
 class SetterModelForm(forms.ModelForm):
+
     class Meta:
         model = Setter
         fields = (
@@ -17,9 +19,11 @@ class SetterModelForm(forms.ModelForm):
             "contact_number",
             "agent",
         )
-        
+
+
 class RegisterForm(UserCreationForm):
+
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ("username", )
         field_classes = {'username': UsernameField}

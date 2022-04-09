@@ -10,5 +10,4 @@ urlpatterns = [
     path('<int:pk>/delete/', DeleteUser.as_view(), name='delete'),
     path('create/', CreateUser.as_view(), name='create'),
     path('loggedout/', LoggedOut.as_view(), name='loggedout'),
-    path('signup/', RegisterView.as_view(), name='signup')
 ]
