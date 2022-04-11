@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'records_feed.apps.RecordsFeedConfig',
     "crispy_forms",
     "crispy_bootstrap5",
+    'agents',
 ]
 
 MIDDLEWARE = [
