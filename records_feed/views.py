@@ -49,7 +49,7 @@ class DeleteUser(LoginRequiredMixin, DeleteView):
 class LoggedOut(TemplateView):
     template_name = 'registration/logged_out.html'
     
-class RegisterView(CreateUser):
+class RegisterView(CreateView):
     template_name = 'registration/signup.html'
     form_class = RegisterForm
     
