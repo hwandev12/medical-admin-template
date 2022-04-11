@@ -4,6 +4,12 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     pass
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.user.username)
+
 class Setter(models.Model):
     
     class Meta:
@@ -22,6 +28,7 @@ class Setter(models.Model):
     
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     
     def __str__(self):
         return str(self.user)
