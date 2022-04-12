@@ -62,11 +62,11 @@
             </li>
             {% endif %}
             <li>
-              <a href="#"><span class="fa fa-cogs mr-3"></span> Services</a>
+              <a href="{% url 'agents:agent-create' %}"><span class="fa fa-cogs mr-3"></span>Agents Create</a>
             </li>
             <li>
-              <a href="#"
-                ><span class="fa fa-paper-plane mr-3"></span> Contacts</a
+              <a href="{% url 'agents:agent-lists' %}"
+                ><span class="fa fa-paper-plane mr-3"></span>Agents</a
               >
             </li>
           </ul>
