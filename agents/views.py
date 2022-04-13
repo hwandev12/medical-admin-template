@@ -1,16 +1,17 @@
 from django.views import generic
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixins import OraniserAndLoginRequiredMixin
 from records_feed.models import Agent
 from .forms import AgentCreateModel
 
-class AgentsListView(LoginRequiredMixin, generic.ListView):
+class AgentsListView(OraniserAndLoginRequiredMixin, generic.ListView):
     template_name = 'agents/lists.html'
     
     def get_queryset(self):
         return Agent.objects.all()
     
-class AgentCreateView(LoginRequiredMixin, generic.CreateView):
+class AgentCreateView(OraniserAndLoginRequiredMixin, generic.CreateView):
     template_name = 'agents/create.html'
     form_class = AgentCreateModel
     
