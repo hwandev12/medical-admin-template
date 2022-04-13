@@ -16,7 +16,7 @@
     <div class="feedback">
       <h2 style="font-family: sans-serif">National feedback users</h2>
       {% for agent in object_list %}
-      <a href="#"
+      <a href="{% url 'agents:agent-detail' agent.pk %}"
         >{{ agent.user.username }}</a
       >
       {% endfor %}
