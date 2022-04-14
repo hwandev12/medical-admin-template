@@ -23,7 +23,8 @@ class Setter(models.Model):
     email = models.EmailField()
     message = models.CharField(max_length=500)
     contact_number = models.CharField(max_length=30)
-    agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
+    organiser = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    agent = models.ForeignKey("Agent", null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name

@@ -13,8 +13,16 @@ class HomeView(TemplateView):
     
 class FeedbackUsers(LoginRequiredMixin, ListView):
     template_name = 'feedback_users.html'
-    queryset = models.Setter.objects.all()
     context_object_name = 'setters'
+    
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_organiser:
+            queryset = models.Setter.objects.filter(organiser=user.userprofile)
+        else:
+            queryset = models.Setter.objects.filter(organiser=user.agent.organiser)
+            queryset = queryset.filter(agent__user=self.request.user)
+        return queryset
     
     
 class SelectInfo(LoginRequiredMixin, DetailView):
