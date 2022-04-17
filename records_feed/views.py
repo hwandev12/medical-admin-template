@@ -24,6 +24,20 @@ class FeedbackUsers(LoginRequiredMixin, ListView):
             queryset = queryset.filter(agent__user=self.request.user)
         return queryset
     
+    # Agenti aniqlanmagan foydalanuvchilar uchun
+    def get_context_data(self, **kwargs): # Esda tutish
+        context = super(FeedbackUsers, self).get_context_data(**kwargs)
+        user = self.request.user
+        if user.is_organiser:
+            queryset = Setter.objects.filter(
+                organiser = user.userprofile,
+                agent__isnull = True
+            )
+        context.update({
+            'unassigned_users': queryset
+        })
+        return context
+    # Agenti aniqlanmagan foydalanuvchilar uchun
     
 class SelectInfo(LoginRequiredMixin, DetailView):
     template_name = 'details/feedback_details.html'
@@ -34,6 +48,12 @@ class CreateUser(LoginRequiredMixin, CreateView):
     template_name = 'create.html'
     form_class = SetterModelForm
     context_object_name = 'form'
+    
+    def form_valid(self, form):
+        lead = form.save(commit=False)
+        lead.organiser = self.request.user.userprofile
+        lead.save()
+        return super(CreateUser, self).form_valid(form)
     
     def get_success_url(self):
         return reverse('feedback:customers')
