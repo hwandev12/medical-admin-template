@@ -8,6 +8,7 @@ urlpatterns = [
     path('<int:pk>/', SelectInfo.as_view(), name='user_info'),
     path('<int:pk>/update/', UpdateUser.as_view(), name='update'),
     path('<int:pk>/delete/', DeleteUser.as_view(), name='delete'),
+    path('<int:pk>/assign-agent/', AgentAssignView.as_view(), name='assign_agent'),
     path('create/', CreateUser.as_view(), name='create'),
     path('loggedout/', LoggedOut.as_view(), name='loggedout'),
 ]
