@@ -87,3 +87,23 @@ class RegisterView(CreateView):
     
 class AgentAssignView(OraniserAndLoginRequiredMixin, FormView):
     template_name = 'details/agent_assign.html'
+    form_class = AssignAgentForm
+    
+    # Bu joyda agentni tayinlash uchun yozilgan kodlar
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(AgentAssignView, self).get_form_kwargs(**kwargs)
+        kwargs.update({
+            'request': self.request
+        })
+        return kwargs
+    
+    def get_success_url(self):
+        return reverse('feedback:customers')
+    
+    def form_valid(self, form):
+        agent = form.cleaned_data['agent']
+        customer = Setter.objects.get(id=self.kwargs['pk'])
+        customer.agent = agent
+        customer.save()
+        return super(AgentAssignView, self).form_valid(form)
+    # Bu joyda agentni tayinlash uchun yozilgan kodlar
