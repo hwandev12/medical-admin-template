@@ -23,8 +23,8 @@
     </div>
 
     <!-- Aniqlanmagan foydalanuvchilar uchun template -->
-    <h1>This is for unassigned users</h1>
     {% if unassigned_users.exists %}
+    <h1>This is for unassigned users</h1>
     <div class="feedback">
       {% for setter in unassigned_users %}
       <a href="{% url 'feedback:assign_agent' setter.pk %}"
