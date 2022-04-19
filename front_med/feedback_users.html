@@ -27,7 +27,7 @@
     {% if unassigned_users.exists %}
     <div class="feedback">
       {% for setter in unassigned_users %}
-      <a href="/{{ setter.pk }}/"
+      <a href="{% url 'feedback:assign_agent' setter.pk %}"
         >{{ setter.name }} {{ setter.last_name }} {{ setter.country }}</a
       >
       {% endfor %}
