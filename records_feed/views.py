@@ -4,9 +4,10 @@ from re import template
 from django.shortcuts import redirect, render, reverse
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import *
 from django.shortcuts import get_object_or_404
 from .forms import *
+from agents.mixins import OraniserAndLoginRequiredMixin
 
 class HomeView(TemplateView):
     template_name = 'base.html'
@@ -39,12 +40,12 @@ class FeedbackUsers(LoginRequiredMixin, ListView):
         return context
     # Agenti aniqlanmagan foydalanuvchilar uchun
     
-class SelectInfo(LoginRequiredMixin, DetailView):
+class SelectInfo(OraniserAndLoginRequiredMixin, DetailView):
     template_name = 'details/feedback_details.html'
     queryset = models.Setter.objects.all()
     context_object_name = 'feedback'
     
-class CreateUser(LoginRequiredMixin, CreateView):
+class CreateUser(OraniserAndLoginRequiredMixin, CreateView):
     template_name = 'create.html'
     form_class = SetterModelForm
     context_object_name = 'form'
@@ -58,7 +59,7 @@ class CreateUser(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('feedback:customers')
 
-class UpdateUser(LoginRequiredMixin, UpdateView):
+class UpdateUser(OraniserAndLoginRequiredMixin, UpdateView):
     template_name = 'update.html'
     queryset = models.Setter.objects.all()
     form_class = SetterModelForm
@@ -67,7 +68,7 @@ class UpdateUser(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('feedback:customers')
     
-class DeleteUser(LoginRequiredMixin, DeleteView):
+class DeleteUser(OraniserAndLoginRequiredMixin, DeleteView):
     template_name = 'delete.html'
     queryset = models.Setter.objects.all()
     
@@ -83,3 +84,6 @@ class RegisterView(CreateView):
     
     def get_success_url(self):
         return reverse('feedback:customers')
+    
+class AgentAssignView(OraniserAndLoginRequiredMixin, FormView):
+    template_name = 'details/agent_assign.html'
