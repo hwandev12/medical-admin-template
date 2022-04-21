@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}Category lists{% endblock title %}
+
+{% block content %}
+  {% for x in customers %}
+    <h3>{{ x.category }}</h3>
+  {% endfor %}
+{% endblock content %}
